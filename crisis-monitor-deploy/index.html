@@ -404,6 +404,7 @@ html,body{height:100%;height:-webkit-fill-available;background:var(--bg);color:v
     <button class="bni" onclick="openDrawer('region')"><div class="bni-ic"><svg width="18" height="18"><use href="#ico-globe"/></svg></div><span data-id="Wilayah" data-en="Region">Wilayah</span></button>
     <button class="bni" onclick="openDrawer('sources')"><div class="bni-ic"><svg width="18" height="18"><use href="#ico-doc"/></svg></div><span data-id="Sumber" data-en="Sources">Sumber</span></button>
     <button class="bni" onclick="saveOffline()"><div class="bni-ic"><svg width="18" height="18"><use href="#ico-dl"/></svg></div><span data-id="Simpan" data-en="Save">Simpan</span></button>
+    <button class="bni" id="m-install-btn" onclick="installPWA()" style="display:none"><div class="bni-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13M8 11l4 4 4-4"/><rect x="3" y="18" width="18" height="3" rx="1"/></svg></div><span data-id="Install" data-en="Install">Install</span></button>
   </div>
 </div>
 
@@ -554,12 +555,14 @@ const USER_TZ_SHORT=(()=>{try{const p=new Intl.DateTimeFormat('en',{timeZoneName
 function fmtLocalTime(iso){try{return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',timeZone:USER_TZ,hour12:false});}catch(e){return'--:--';}}
 
 /* ===== DATA ===== */
+let loadRetryCount = 0;
 async function loadData(){
   try{
     const r=await fetch('/api/events');
     if(!r.ok)throw new Error('HTTP '+r.status);
     const d=await r.json();
     ALL=d.events||[];lastUpdated=d.updated;
+    loadRetryCount = 0;
     checkNewCritical(ALL);
     if(d.sources)Object.entries(d.sources).forEach(([k,v])=>{
       const ok=v==='ok',c=ok?'ok':'err',l=ok?'OK':'ERR';
@@ -573,8 +576,18 @@ async function loadData(){
     const dt=document.getElementById('d-tl');if(dt)dt.style.display='block';
     mobLoaded=0;updStats();updCounts();render();
   }catch(e){
+    loadRetryCount++;
     const sk=document.getElementById('m-skel');
-    if(sk)sk.innerHTML='<div class="empty-wrap"><div class="empty-ic">⚠</div><div class="empty-tx">Gagal memuat data.<br>Periksa koneksi & muat ulang.</div></div>';
+    if(sk){
+      const retryMsg = lang==='id'
+        ? `Gagal memuat data.<br><span style="font-size:10px;opacity:.7">Percobaan ${loadRetryCount} · Mungkin server sedang sibuk</span>`
+        : `Failed to load data.<br><span style="font-size:10px;opacity:.7">Attempt ${loadRetryCount} · Server may be busy</span>`;
+      const reloadLbl = lang==='id' ? 'Coba lagi' : 'Retry';
+      sk.innerHTML=`<div class="empty-wrap"><div class="empty-ic">⚠</div><div class="empty-tx">${retryMsg}</div><button onclick="loadData()" style="margin-top:12px;padding:8px 18px;border-radius:8px;border:1px solid #32353f;background:#181a20;color:#8e9099;font-size:13px;cursor:pointer">${reloadLbl}</button></div>`;
+    }
+    // Auto-retry after 15s if first failure, 30s after that
+    const retryDelay = loadRetryCount <= 2 ? 15000 : 30000;
+    setTimeout(loadData, retryDelay);
   }
 }
 setInterval(loadData,5*60*1000);
@@ -1070,6 +1083,35 @@ window.addEventListener('popstate', function(e) {
     return;
   }
 });
+
+// PWA Install — simpan event, jangan tampilkan otomatis
+let pwaInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  pwaInstallPrompt = e;
+  // Tampilkan tombol install di bottom nav
+  const btn = document.getElementById('m-install-btn');
+  if (btn) btn.style.display = 'flex';
+});
+window.addEventListener('appinstalled', () => {
+  pwaInstallPrompt = null;
+  const btn = document.getElementById('m-install-btn');
+  if (btn) btn.style.display = 'none';
+});
+async function installPWA() {
+  if (!pwaInstallPrompt) {
+    // iOS: tampilkan petunjuk manual
+    alert(lang === 'id'
+      ? 'Di iPhone/iPad: ketuk tombol Bagikan (⬆) lalu pilih "Tambahkan ke Layar Utama".'
+      : 'On iPhone/iPad: tap the Share button (⬆) then select "Add to Home Screen".');
+    return;
+  }
+  pwaInstallPrompt.prompt();
+  await pwaInstallPrompt.userChoice;
+  pwaInstallPrompt = null;
+  const btn = document.getElementById('m-install-btn');
+  if (btn) btn.style.display = 'none';
+}
 
 // Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
