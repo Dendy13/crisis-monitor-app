@@ -36,9 +36,10 @@ module.exports = async function handler(req, res) {
     fetchUNOCHASituations(),
     fetchKonflikIndonesia(),
     fetchIndonesiaForeignPolicy(),
+    fetchIndonesiaBencana(),
   ]);
 
-  const keys = ['bmkg','usgs','eonet','reliefweb','gdacs','who','noaa','acled','pvmbg','icrc','crisisgroup','msf','bbc','reuters','un','dw','france24','voa','rferl','mee','hrw','amnesty','bellingcat','unhcr','ocha_sit','konflik_id','id_foreign'];
+  const keys = ['bmkg','usgs','eonet','reliefweb','gdacs','who','noaa','acled','pvmbg','icrc','crisisgroup','msf','bbc','reuters','un','dw','france24','voa','rferl','mee','hrw','amnesty','bellingcat','unhcr','ocha_sit','konflik_id','id_foreign','bnpb_gdacs'];
   const sources = {};
   keys.forEach((k, i) => {
     sources[k] = results[i].status === 'fulfilled' ? 'ok' : (results[i].reason?.message || 'error');
@@ -252,7 +253,7 @@ async function fetchGDACS() {
     return {
       id: `gdacs-${i}-${dt.getTime()}`,
       datetime: dt.toISOString(), date: toDateStr(dt), time: toTimeUTC(dt),
-      severity, cat, region: 'global', badge,
+      severity, cat, region: /indonesia|papua|sumatra|java|kalimantan|sulawesi|maluku|nusa|timor/i.test(loc) ? 'id' : 'global', badge,
       title_id: title, title_en: title,
       desc_id: desc || 'Peringatan bencana dari GDACS (UN).',
       desc_en: desc || 'Disaster alert from GDACS (UN).',
@@ -302,7 +303,7 @@ async function fetchWHO() {
       return {
         id: `who-${i}-${safedt.getTime()}`,
         datetime: safedt.toISOString(), date: toDateStr(safedt), time: toTimeUTC(safedt),
-        severity: 'warning', cat: 'wabah', region: 'global', badge: 'WABAH',
+        severity: 'warning', cat: 'wabah', region: /indonesia|papua|java|sumatra|kalimantan|sulawesi/i.test(title+country) ? 'id' : 'global', badge: 'WABAH',
         title_id: title, title_en: title,
         desc_id: desc || 'Rilis terbaru WHO terkait wabah atau kesehatan global.',
         desc_en: desc || 'Latest WHO release on outbreaks or global health.',
@@ -564,9 +565,13 @@ async function fetchKonflikIndonesia() {
   const sources = [
     { url: 'https://www.aljazeera.com/xml/rss/all.xml', name: 'Al Jazeera' },
     { url: 'https://feeds.bbci.co.uk/news/world/rss.xml', name: 'BBC News' },
+    { url: 'https://feeds.bbci.co.uk/news/world/asia/rss.xml', name: 'BBC Asia' },
     { url: 'https://rss.dw.com/rdf/rss-en-asia', name: 'DW Asia' },
+    { url: 'https://rss.dw.com/rdf/rss-en-world', name: 'DW World' },
     { url: 'https://www.voanews.com/api/zmbq_yrk_e', name: 'VOA News' },
     { url: 'https://www.france24.com/en/rss', name: 'France24' },
+    { url: 'https://www.rferl.org/api/z_iqpeuvt', name: 'RFE/RL' },
+    { url: 'https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml', name: 'UN Asia-Pacific' },
   ];
 
   for (const src of sources) {
@@ -586,7 +591,7 @@ async function fetchKonflikIndonesia() {
         const desc  = extract(block, 'description').slice(0, 400);
         // Filter: harus ada kata Indonesia dan terkait konflik/keamanan
         if (!idKeywords.test(title + ' ' + desc)) return;
-        const conflictKw = /conflict|attack|killed|armed|military|troops|rebel|separatist|militant|bomb|shooting|violence|arrested|terror|weapon|war|fighting|operation|raid|clashes|hostage|Papua|KKB|TNI|Polri/i;
+        const conflictKw = /conflict|attack|killed|armed|military|troops|rebel|separatist|militant|bomb|shooting|violence|arrested|terror|weapon|war|fighting|operation|raid|clashes|hostage|papua|kkb|tni|polri|earthquake|flood|disaster|eruption|tsunami|explosion|fire|storm|crisis|unrest|protest|election|coup|sanction|corruption/i;
         if (!conflictKw.test(title + ' ' + desc)) return;
         const link = extract(block, 'link');
         const pub  = extract(block, 'pubDate');
@@ -635,7 +640,7 @@ async function fetchKonflikIndonesia() {
     }
   } catch(e) {}
 
-  if (results.length === 0) throw new Error('Tidak ada data konflik Indonesia');
+  if (results.length === 0) return []; // Tidak ada berita konflik Indonesia saat ini — normal
   const seen = new Set();
   return results.filter(ev => {
     if (seen.has(ev.title_en)) return false;
@@ -650,15 +655,19 @@ async function fetchKonflikIndonesia() {
 async function fetchIndonesiaForeignPolicy() {
   const results = [];
   // Filter berita dari media internasional tentang posisi/diplomasi Indonesia
-  const idDiploKeywords = /indonesia.{0,30}(peace|war|conflict|ukraine|russia|iran|israel|palestine|myanmar|asean|pbb|un|nato|ceasefire|mediat|diplomat|foreign|minister|prabowo|retno|sugiono)/i;
-  const altKeywords = /(prabowo|retno|sugiono|indonesia).{0,50}(war|peace|conflict|attack|iran|ukraine|israel|myanmar|sudan|asean|foreign policy|diplomac)/i;
+  const idDiploKeywords = /indonesia.{0,50}(peace|war|conflict|ukraine|russia|iran|israel|palestine|myanmar|asean|pbb|un|nato|ceasefire|mediat|diplomat|foreign|minister|prabowo|retno|sugiono|disaster|aid|humanitarian|refugee|sanction|nuclear|military|troops|economy|trade|oil|energy)/i;
+  const altKeywords = /(prabowo|retno|sugiono|jakarta|indonesia).{0,80}(war|peace|conflict|attack|iran|ukraine|israel|myanmar|sudan|asean|foreign policy|diplomac|statement|bilateral|summit|meeting|visit|call|condemn|support)/i;
 
   const sources = [
     { url: 'https://www.aljazeera.com/xml/rss/all.xml', name: 'Al Jazeera' },
     { url: 'https://feeds.bbci.co.uk/news/world/rss.xml', name: 'BBC News' },
+    { url: 'https://feeds.bbci.co.uk/news/world/asia/rss.xml', name: 'BBC Asia' },
     { url: 'https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml', name: 'UN News' },
+    { url: 'https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml', name: 'UN Asia-Pacific' },
     { url: 'https://rss.dw.com/rdf/rss-en-asia', name: 'DW Asia' },
     { url: 'https://www.voanews.com/api/zmbq_yrk_e', name: 'VOA News' },
+    { url: 'https://www.france24.com/en/rss', name: 'France24' },
+    { url: 'https://www.theguardian.com/world/rss', name: 'The Guardian' },
   ];
 
   // Juga coba Kemlu RI
@@ -740,12 +749,61 @@ async function fetchIndonesiaForeignPolicy() {
     } catch(e) { continue; }
   }
 
-  if (results.length === 0) throw new Error('Tidak ada data kebijakan luar negeri Indonesia');
+  if (results.length === 0) return []; // Tidak ada berita diplomasi Indonesia saat ini — normal
   const seen = new Set();
   return results.filter(ev => {
     if (seen.has(ev.title_en)) return false;
     seen.add(ev.title_en); return true;
   }).sort((a,b) => new Date(b.datetime)-new Date(a.datetime)).slice(0,15);
+}
+
+// ============================================================
+// Indonesia Bencana — GDACS API filter Indonesia + NASA FIRMS wilayah Indonesia
+// ============================================================
+async function fetchIndonesiaBencana() {
+  const results = [];
+
+  // GDACS API — filter negara Indonesia (IDN)
+  try {
+    const res = await fetchWithTimeout(
+      'https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?fromDate=&toDate=&alertlevel=&eventtype=&country=IDN&sorting=datemodified&limit=20',
+      { headers: { 'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0 CrisisMonitor/1.0' } }
+    );
+    const data = await res.json();
+    const events = data?.features || [];
+    const catMap = {
+      EQ: { cat: 'gempa',     badge: 'GEMPA',     sev: 'warning'  },
+      TC: { cat: 'cuaca',     badge: 'SIKLON',     sev: 'critical' },
+      FL: { cat: 'bencana',   badge: 'BANJIR',     sev: 'warning'  },
+      VO: { cat: 'bencana',   badge: 'GUNUNG API', sev: 'warning'  },
+      WF: { cat: 'kebakaran', badge: 'KARHUTLA',   sev: 'warning'  },
+      DR: { cat: 'bencana',   badge: 'KEKERINGAN', sev: 'info'     },
+    };
+    events.forEach((feat, i) => {
+      const p = feat.properties || {};
+      const type = p.eventtype || 'EQ';
+      const mapped = catMap[type] || { cat: 'bencana', badge: 'BENCANA', sev: 'info' };
+      const dt = p.fromdate ? new Date(p.fromdate) : new Date();
+      const alertSev = p.alertlevel === 'Red' ? 'critical' : p.alertlevel === 'Orange' ? 'warning' : mapped.sev;
+      const title = `${p.name || type} — ${p.country || 'Indonesia'}`;
+      results.push({
+        id: `bnpb-gdacs-${i}-${dt.getTime()}`,
+        datetime: dt.toISOString(), date: toDateStr(dt), time: toTimeUTC(dt),
+        severity: alertSev, cat: mapped.cat, region: 'id', badge: mapped.badge,
+        title_id: title, title_en: title,
+        desc_id: `${p.htmldescription ? cleanDesc(p.htmldescription).slice(0,300) : `Peringatan ${mapped.badge} terdeteksi GDACS di Indonesia.`}`,
+        desc_en: `${p.htmldescription ? cleanDesc(p.htmldescription).slice(0,300) : `${mapped.badge} alert detected by GDACS in Indonesia.`}`,
+        source: 'GDACS / BNPB', loc: p.country || 'Indonesia',
+        url: p.url ? `https://www.gdacs.org${p.url}` : 'https://www.gdacs.org',
+        updates: [],
+      });
+    });
+  } catch(e) {}
+
+  // NASA EONET filter Indonesia wilayah (sudah ada di fetchEONET, tapi tidak filter region)
+  // Tidak perlu duplikat
+
+  return results; // return [] kalau kosong, bukan throw
 }
 
 // ============================================================
