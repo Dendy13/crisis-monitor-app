@@ -808,9 +808,7 @@ function setLang(l,el,ctx){
   if(msrch) msrch.placeholder = l==='id' ? 'Cari kejadian...' : 'Search events...';
   // Translate detail panel empty state
   const ddetEmpty = document.querySelector('.ddet-empty-tx');
-  if(ddetEmpty) ddetEmpty.textContent = l==='id' ? 'Pilih kejadian
-untuk melihat detail' : 'Select an event
-to view details';
+  if(ddetEmpty) ddetEmpty.innerHTML = l==='id' ? 'Pilih kejadian<br>untuk melihat detail' : 'Select an event<br>to view details';
   const html = document.documentElement;
   html.setAttribute('lang', l);
   render();updCounts();if(selId)selectEv(selId);
