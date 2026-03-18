@@ -75,11 +75,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 
 /* stats strip */
 .stats-strip{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--bg2)}
-.si{flex:1;padding:10px 10px;text-align:center;border-right:1px solid var(--border)}
+.si{flex:1;padding:11px 10px;text-align:center;border-right:1px solid var(--border)}
 .si:last-child{border-right:none}
-.sn{font-family:var(--fm);font-size:19px;font-weight:500;line-height:1}
+.sn{font-family:var(--fm);font-size:22px;font-weight:600;line-height:1}
 .sn.r{color:var(--red)}.sn.a{color:var(--amber)}.sn.b{color:var(--blue)}
-.sl{font-family:var(--fm);font-size:9px;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-top:3px}
+.sl{font-family:var(--fm);font-size:10px;color:var(--text2);letter-spacing:.07em;text-transform:uppercase;margin-top:4px;font-weight:500}
 
 /* filter strip */
 .fstrip{border-bottom:1px solid var(--border);flex-shrink:0;background:var(--bg);overflow:hidden}
@@ -119,7 +119,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .evdot.info{background:var(--blue);box-shadow:0 0 0 3px var(--blue-bg)}
 .evmain{flex:1;min-width:0}
 .evbadges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px}
-.evtitle{font-size:14px;font-weight:500;line-height:1.45;color:var(--text);margin-bottom:5px}
+.evtitle{font-size:14.5px;font-weight:500;line-height:1.45;color:var(--text);margin-bottom:5px}
 .evdesc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .evfoot{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;color:var(--text3)}
 .efdot{width:2px;height:2px;border-radius:50%;background:var(--text3)}
@@ -197,7 +197,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
   .detsheet,.drawer,.drov{display:none!important}
 
   .desk{display:flex;height:100dvh;height:100vh;overflow:hidden}
-  .dsb{width:280px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow:hidden}
+  .dsb{width:300px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow:hidden}
   .dsb-inner{flex:1;overflow-y:auto;padding:1.25rem}
   .dsb-inner::-webkit-scrollbar{width:3px}
   .dsb-inner::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
@@ -229,48 +229,48 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .dlive{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 11px;margin-bottom:1rem;font-family:var(--fm);font-size:10px;color:var(--text3)}
 .dlive-pill{display:flex;align-items:center;gap:5px;color:var(--green);font-weight:500}
 .dstats{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:1rem}
-.dstat{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:9px 8px}
-.dstat-v{font-family:var(--fm);font-size:20px;font-weight:500;line-height:1}
-.dstat-l{font-size:9px;font-family:var(--fm);color:var(--text3);letter-spacing:.05em;text-transform:uppercase;margin-top:2px}
+.dstat{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:11px 10px}
+.dstat-v{font-family:var(--fm);font-size:24px;font-weight:600;line-height:1}
+.dstat-l{font-size:10px;font-family:var(--fm);color:var(--text2);letter-spacing:.05em;text-transform:uppercase;margin-top:3px;font-weight:500}
 .dstat.r .dstat-v{color:var(--red)}.dstat.a .dstat-v{color:var(--amber)}.dstat.b .dstat-v{color:var(--blue)}
-.dsec{font-family:var(--fm);font-size:9px;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px;margin-top:.875rem}
+.dsec{font-family:var(--fm);font-size:10px;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px;margin-top:1rem;font-weight:500}
 .dregion{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:.875rem}
 .drbtn{padding:6px;border-radius:5px;border:1px solid var(--border2);background:transparent;color:var(--text3);font-family:var(--fm);font-size:10px;cursor:pointer;transition:all .1s;text-align:center}
 .drbtn.active{background:var(--bg4);color:var(--text);border-color:var(--blue)}
 .dcats{display:flex;flex-direction:column;gap:1px}
-.dcat{display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:5px;border:1px solid transparent;cursor:pointer;font-size:13px;color:var(--text2);background:transparent;transition:all .1s;width:100%;text-align:left}
+.dcat{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:5px;border:1px solid transparent;cursor:pointer;font-size:13px;color:var(--text2);background:transparent;transition:all .1s;width:100%;text-align:left}
 .dcat:hover{background:var(--bg3)}
 .dcat.active{background:var(--bg3);border-color:var(--border2);color:var(--text)}
 .dcdot{width:6px;height:6px;border-radius:50%}
-.dccnt{margin-left:auto;font-family:var(--fm);font-size:10px;color:var(--text3)}
+.dccnt{margin-left:auto;font-family:var(--fm);font-size:11px;color:var(--text2);font-weight:500}
 .dsrchwrap{position:relative;margin-bottom:.875rem}
 .dsrch{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 11px 7px 32px;color:var(--text);font-size:13px;font-family:var(--ff);outline:none;transition:border-color .12s}
 .dsrch::placeholder{color:var(--text3)}
 .dsrch:focus{border-color:var(--border2)}
 .dsrch-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
 .dsrc-list{display:flex;flex-direction:column;gap:2px}
-.dsrc-row{display:flex;align-items:center;justify-content:space-between;font-family:var(--fm);font-size:9px;color:var(--text3);padding:2px 0}
-.dsrc-bdg{font-size:9px;padding:1px 5px;border-radius:2px}
+.dsrc-row{display:flex;align-items:center;justify-content:space-between;font-family:var(--fm);font-size:11px;color:var(--text2);padding:3px 0}
+.dsrc-bdg{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px}
 .dsrc-bdg.ok{background:rgba(34,197,94,.12);color:var(--green)}
 .dsrc-bdg.err{background:var(--red-bg);color:#f87171}
 .dsrc-bdg.loading{background:var(--amber-bg);color:#fbbf24}
 .dsavebtn{width:100%;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:11px;font-family:var(--fm);cursor:pointer;transition:all .12s}
 .dsavebtn:hover{background:var(--bg3);color:var(--text);border-color:var(--green)}
-.dmain-title{font-size:14px;font-weight:500}
-.dmain-sub{font-family:var(--fm);font-size:10px;color:var(--text3);margin-top:2px}
+.dmain-title{font-size:15px;font-weight:600}
+.dmain-sub{font-family:var(--fm);font-size:11px;color:var(--text2);margin-top:3px;font-weight:400}
 .dlang{display:flex;gap:2px}
 .dlbtn{padding:4px 8px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--text3);font-family:var(--fm);font-size:10px;cursor:pointer;transition:all .1s}
 .dlbtn.active{background:var(--bg3);color:var(--text);border-color:var(--border2)}
 .ddet-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text3);text-align:center;gap:10px;padding:2rem}
 .ddet-empty-ic{font-size:28px;opacity:.2}
 .ddet-empty-tx{font-family:var(--fm);font-size:11px;line-height:1.7}
-.ddet-title{font-size:15px;font-weight:500;line-height:1.45;margin:.5rem 0 1rem}
+.ddet-title{font-size:16px;font-weight:600;line-height:1.45;margin:.5rem 0 1rem}
 .ddet-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin-bottom:1rem}
-.ddk{font-family:var(--fm);font-size:9px;color:var(--text3);letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
-.ddv{font-size:12px;color:var(--text2)}
+.ddk{font-family:var(--fm);font-size:10px;color:var(--text3);letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
+.ddv{font-size:13px;color:var(--text2)}
 .ddiv{height:1px;background:var(--border);margin:.875rem 0}
 .ddet-sec{font-family:var(--fm);font-size:9px;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
-.ddet-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.ddet-desc{font-size:14px;color:var(--text2);line-height:1.8}
 .ddet-upds{display:flex;flex-direction:column;gap:.625rem;margin-top:.5rem}
 .ddet-upd{padding:9px 11px;background:var(--bg3);border-radius:6px;border-left:2px solid var(--border2)}
 .ddet-upd.red{border-left-color:var(--red)}.ddet-upd.amber{border-left-color:var(--amber)}
@@ -342,28 +342,28 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
   </div>
 
   <div class="stats-strip">
-    <div class="si"><div class="sn r" id="m-sc">–</div><div class="sl">KRITIS</div></div>
-    <div class="si"><div class="sn a" id="m-sw">–</div><div class="sl">WASPADA</div></div>
-    <div class="si"><div class="sn b" id="m-st">–</div><div class="sl">TOTAL</div></div>
+    <div class="si"><div class="sn r" id="m-sc">–</div><div class="sl" id="lbl-mc">KRITIS</div></div>
+    <div class="si"><div class="sn a" id="m-sw">–</div><div class="sl" id="lbl-mw">WASPADA</div></div>
+    <div class="si"><div class="sn b" id="m-st">–</div><div class="sl" id="lbl-mt">TOTAL</div></div>
     <div class="si" style="border-right:none"><div class="sn" style="font-size:10px;color:var(--text3);margin-top:4px" id="m-su">–</div><div class="sl">UPDATE</div></div>
   </div>
 
   <div class="fstrip">
     <div class="fscroll" id="m-fchips">
-      <div class="fchip active" onclick="setCat('all',this,'mob')"><div class="fdot" style="background:var(--text3)"></div>Semua <span id="m-ca">–</span></div>
-      <div class="fchip" onclick="setCat('konflik',this,'mob')"><div class="fdot" style="background:var(--red)"></div>Konflik <span id="m-ck">–</span></div>
-      <div class="fchip" onclick="setCat('gempa',this,'mob')"><div class="fdot" style="background:var(--red)"></div>Gempa <span id="m-cg">–</span></div>
-      <div class="fchip" onclick="setCat('bencana',this,'mob')"><div class="fdot" style="background:var(--amber)"></div>Bencana <span id="m-cb">–</span></div>
-      <div class="fchip" onclick="setCat('cuaca',this,'mob')"><div class="fdot" style="background:var(--blue)"></div>Cuaca <span id="m-cc">–</span></div>
-      <div class="fchip" onclick="setCat('wabah',this,'mob')"><div class="fdot" style="background:var(--green)"></div>Wabah <span id="m-cw">–</span></div>
-      <div class="fchip" onclick="setCat('kebakaran',this,'mob')"><div class="fdot" style="background:var(--amber)"></div>Kebakaran <span id="m-ckb">–</span></div>
+      <div class="fchip active" onclick="setCat('all',this,'mob')"><div class="fdot" style="background:var(--text3)"></div><span class="chip-label" data-id="Semua" data-en="All">Semua</span>&nbsp;<span id="m-ca">–</span></div>
+      <div class="fchip" onclick="setCat('konflik',this,'mob')"><div class="fdot" style="background:var(--red)"></div><span class="chip-label" data-id="Konflik" data-en="Conflict">Konflik</span>&nbsp;<span id="m-ck">–</span></div>
+      <div class="fchip" onclick="setCat('gempa',this,'mob')"><div class="fdot" style="background:var(--red)"></div><span class="chip-label" data-id="Gempa" data-en="Earthquake">Gempa</span>&nbsp;<span id="m-cg">–</span></div>
+      <div class="fchip" onclick="setCat('bencana',this,'mob')"><div class="fdot" style="background:var(--amber)"></div><span class="chip-label" data-id="Bencana" data-en="Disaster">Bencana</span>&nbsp;<span id="m-cb">–</span></div>
+      <div class="fchip" onclick="setCat('cuaca',this,'mob')"><div class="fdot" style="background:var(--blue)"></div><span class="chip-label" data-id="Cuaca" data-en="Weather">Cuaca</span>&nbsp;<span id="m-cc">–</span></div>
+      <div class="fchip" onclick="setCat('wabah',this,'mob')"><div class="fdot" style="background:var(--green)"></div><span class="chip-label" data-id="Wabah" data-en="Outbreak">Wabah</span>&nbsp;<span id="m-cw">–</span></div>
+      <div class="fchip" onclick="setCat('kebakaran',this,'mob')"><div class="fdot" style="background:var(--amber)"></div><span class="chip-label" data-id="Kebakaran" data-en="Wildfire">Kebakaran</span>&nbsp;<span id="m-ckb">–</span></div>
     </div>
   </div>
 
   <div class="srchbar" id="srchbar">
     <div class="srchwrap">
       <svg class="srchico" width="14" height="14"><use href="#ico-search"/></svg>
-      <input class="srchinput" id="m-srch" placeholder="Cari kejadian..." oninput="onSearch('mob')">
+      <input class="srchinput" id="m-srch" id="m-srch" placeholder="Cari kejadian..." id="d-srch" oninput="onSearch('mob')">
     </div>
   </div>
 
@@ -418,32 +418,32 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
         <span id="d-ltime">--:--</span>
       </div>
       <div class="dstats">
-        <div class="dstat r"><div class="dstat-v" id="d-sc">–</div><div class="dstat-l">KRITIS</div></div>
-        <div class="dstat a"><div class="dstat-v" id="d-sw">–</div><div class="dstat-l">WASPADA</div></div>
-        <div class="dstat b"><div class="dstat-v" id="d-st">–</div><div class="dstat-l">TOTAL</div></div>
+        <div class="dstat r"><div class="dstat-v" id="d-sc">–</div><div class="dstat-l" id="lbl-dc">KRITIS</div></div>
+        <div class="dstat a"><div class="dstat-v" id="d-sw">–</div><div class="dstat-l" id="lbl-dw">WASPADA</div></div>
+        <div class="dstat b"><div class="dstat-v" id="d-st">–</div><div class="dstat-l" id="lbl-dt">TOTAL</div></div>
       </div>
-      <div class="dsec">Wilayah</div>
+      <div class="dsec"><span class="rgn-label" data-id="Wilayah" data-en="Region">Wilayah</span></div>
       <div class="dregion">
         <button class="drbtn active" onclick="setRegion('all',this)">Semua</button>
         <button class="drbtn" onclick="setRegion('id',this)">Indonesia</button>
         <button class="drbtn" onclick="setRegion('global',this)">Global</button>
       </div>
-      <div class="dsec">Kategori</div>
+      <div class="dsec"><span class="rgn-label" data-id="Kategori" data-en="Category">Kategori</span></div>
       <div class="dcats" id="d-cats">
-        <button class="dcat active" onclick="setCat('all',this,'desk')"><div class="dcdot" style="background:var(--text3)"></div>Semua<span class="dccnt" id="d-ca">–</span></button>
-        <button class="dcat" onclick="setCat('gempa',this,'desk')"><div class="dcdot" style="background:var(--red)"></div>Gempa & Tsunami<span class="dccnt" id="d-cg">–</span></button>
-        <button class="dcat" onclick="setCat('bencana',this,'desk')"><div class="dcdot" style="background:var(--amber)"></div>Bencana Alam<span class="dccnt" id="d-cb">–</span></button>
-        <button class="dcat" onclick="setCat('konflik',this,'desk')"><div class="dcdot" style="background:var(--red)"></div>Konflik & Perang<span class="dccnt" id="d-ck">–</span></button>
-        <button class="dcat" onclick="setCat('cuaca',this,'desk')"><div class="dcdot" style="background:var(--blue)"></div>Cuaca Ekstrem<span class="dccnt" id="d-cc">–</span></button>
-        <button class="dcat" onclick="setCat('wabah',this,'desk')"><div class="dcdot" style="background:var(--green)"></div>Wabah & Kesehatan<span class="dccnt" id="d-cw">–</span></button>
-        <button class="dcat" onclick="setCat('kebakaran',this,'desk')"><div class="dcdot" style="background:var(--amber)"></div>Kebakaran<span class="dccnt" id="d-ckb">–</span></button>
+        <button class="dcat active" onclick="setCat('all',this,'desk')"><div class="dcdot" style="background:var(--text3)"></div><span class="dcat-label" data-id="Semua" data-en="All">Semua</span><span class="dccnt" id="d-ca">–</span></button>
+        <button class="dcat" onclick="setCat('gempa',this,'desk')"><div class="dcdot" style="background:var(--red)"></div><span class="dcat-label" data-id="Gempa & Tsunami" data-en="Earthquakes">Gempa & Tsunami</span><span class="dccnt" id="d-cg">–</span></button>
+        <button class="dcat" onclick="setCat('bencana',this,'desk')"><div class="dcdot" style="background:var(--amber)"></div><span class="dcat-label" data-id="Bencana Alam" data-en="Natural Disasters">Bencana Alam</span><span class="dccnt" id="d-cb">–</span></button>
+        <button class="dcat" onclick="setCat('konflik',this,'desk')"><div class="dcdot" style="background:var(--red)"></div><span class="dcat-label" data-id="Konflik & Perang" data-en="Conflict & War">Konflik & Perang</span><span class="dccnt" id="d-ck">–</span></button>
+        <button class="dcat" onclick="setCat('cuaca',this,'desk')"><div class="dcdot" style="background:var(--blue)"></div><span class="dcat-label" data-id="Cuaca Ekstrem" data-en="Extreme Weather">Cuaca Ekstrem</span><span class="dccnt" id="d-cc">–</span></button>
+        <button class="dcat" onclick="setCat('wabah',this,'desk')"><div class="dcdot" style="background:var(--green)"></div><span class="dcat-label" data-id="Wabah & Kesehatan" data-en="Outbreaks">Wabah & Kesehatan</span><span class="dccnt" id="d-cw">–</span></button>
+        <button class="dcat" onclick="setCat('kebakaran',this,'desk')"><div class="dcdot" style="background:var(--amber)"></div><span class="dcat-label" data-id="Kebakaran" data-en="Wildfires">Kebakaran</span><span class="dccnt" id="d-ckb">–</span></button>
       </div>
-      <div class="dsec">Cari</div>
+      <div class="dsec"><span class="rgn-label" data-id="Cari" data-en="Search">Cari</span></div>
       <div class="dsrchwrap">
         <svg class="dsrch-ico" width="13" height="13"><use href="#ico-search"/></svg>
-        <input class="dsrch" id="d-srch" placeholder="Cari kejadian..." oninput="onSearch('desk')">
+        <input class="dsrch" id="d-srch" placeholder="Cari kejadian..." id="d-srch" oninput="onSearch('desk')">
       </div>
-      <div class="dsec">Status sumber</div>
+      <div class="dsec"><span class="rgn-label" data-id="Status sumber" data-en="Source status">Status sumber</span></div>
       <div class="dsrc-list">
         <div class="dsrc-row"><span>BMKG</span><span class="dsrc-bdg loading" id="ds-bmkg">–</span></div>
         <div class="dsrc-row"><span>USGS</span><span class="dsrc-bdg loading" id="ds-usgs">–</span></div>
@@ -662,7 +662,9 @@ function render(){
     if(dt)dt.innerHTML=tH;if(dp)dp.innerHTML=pH;
     const labels={all:lang==='id'?'Semua kejadian':'All events',gempa:lang==='id'?'Gempa & Tsunami':'Earthquakes',bencana:lang==='id'?'Bencana Alam':'Natural Disasters',konflik:lang==='id'?'Konflik & Perang':'Conflict & War',cuaca:lang==='id'?'Cuaca Ekstrem':'Extreme Weather',wabah:lang==='id'?'Wabah':'Outbreaks',kebakaran:lang==='id'?'Kebakaran':'Wildfires'};
     const ti=document.getElementById('d-title');if(ti)ti.textContent=labels[cat]||labels['all'];
-    const si=document.getElementById('d-sub');if(si)si.textContent=`${evs.length} kejadian · ${fmtUpd()} · hal ${page}/${total}`;
+    const kejLabel = lang==='id' ? 'kejadian' : 'events';
+    const halLabel = lang==='id' ? 'hal' : 'pg';
+    const si=document.getElementById('d-sub');if(si)si.textContent=`${evs.length} ${kejLabel}  ·  ${fmtUpd()}  ·  ${halLabel} ${page}/${total}`;
   }
 }
 function goPage(p){page=p;render();const e=document.getElementById('d-scroll');if(e)e.scrollTo(0,0);}
@@ -711,7 +713,10 @@ function selectEv(id){
   selId=id;const ev=ALL.find(e=>e.id===id);if(!ev)return;
   if(window.innerWidth<860){
     const sh=document.getElementById('detsheet'),bd=document.getElementById('det-sh-body');
-    bd.innerHTML=detHTML(ev,true);bd.scrollTop=0;sh.classList.add('open');
+    bd.innerHTML=detHTML(ev,true);bd.scrollTop=0;
+    sh.classList.add('open');
+    // Push history so hardware back button closes panel
+    history.pushState({panel:'detail', evId:id}, '', '');
   }else{
     render();
     const bd=document.getElementById('d-det');bd.innerHTML=detHTML(ev,false);bd.scrollTop=0;
@@ -723,14 +728,18 @@ function closeDDet(){selId=null;render();document.getElementById('d-det').innerH
 /* ===== DRAWER ===== */
 function openDrawer(type){
   const drawer=document.getElementById('drawer'),ov=document.getElementById('drov'),title=document.getElementById('dr-title'),body=document.getElementById('dr-body');
+  history.pushState({panel:'drawer', type}, '', '');
   const base=ALL.filter(e=>region==='all'||e.region===region);
   if(type==='filter'){
-    title.textContent='Kategori';
-    const cats=[['all','Semua kejadian',base.length,'var(--text3)'],['gempa','Gempa & Tsunami',base.filter(e=>e.cat==='gempa').length,'var(--red)'],['bencana','Bencana Alam',base.filter(e=>e.cat==='bencana').length,'var(--amber)'],['konflik','Konflik & Perang',base.filter(e=>e.cat==='konflik').length,'var(--red)'],['cuaca','Cuaca Ekstrem',base.filter(e=>e.cat==='cuaca').length,'var(--blue)'],['wabah','Wabah & Kesehatan',base.filter(e=>e.cat==='wabah').length,'var(--green)'],['kebakaran','Kebakaran',base.filter(e=>e.cat==='kebakaran').length,'var(--amber)']];
+    title.textContent=lang==='id'?'Kategori':'Category';
+    const catsID=[['all','Semua kejadian','All events'],['gempa','Gempa & Tsunami','Earthquakes'],['bencana','Bencana Alam','Natural Disasters'],['konflik','Konflik & Perang','Conflict & War'],['cuaca','Cuaca Ekstrem','Extreme Weather'],['wabah','Wabah & Kesehatan','Outbreaks'],['kebakaran','Kebakaran','Wildfires']];
+    const catColors={'all':'var(--text3)','gempa':'var(--red)','bencana':'var(--amber)','konflik':'var(--red)','cuaca':'var(--blue)','wabah':'var(--green)','kebakaran':'var(--amber)'};
+    const cats=catsID.map(([c,nid,nen])=>[c,lang==='id'?nid:nen,base.filter(e=>c==='all'||e.cat===c).length,catColors[c]]);
     body.innerHTML=`<div class="cat-list">${cats.map(([c,n,cnt,col])=>`<div class="catrow${cat===c?' active':''}" onclick="setCat('${c}',this,'drawer');closeDrawer()"><div class="catrow-l"><div class="catcdot" style="background:${col}"></div>${n}</div><div class="catcnt">${cnt}</div></div>`).join('')}</div>`;
   }else if(type==='region'){
-    title.textContent='Wilayah';
-    body.innerHTML=`<div class="region-btns"><button class="rbtn${region==='all'?' active':''}" onclick="setRegion('all',this);closeDrawer()">Semua</button><button class="rbtn${region==='id'?' active':''}" onclick="setRegion('id',this);closeDrawer()">Indonesia</button><button class="rbtn${region==='global'?' active':''}" onclick="setRegion('global',this);closeDrawer()">Global</button></div>`;
+    title.textContent=lang==='id'?'Wilayah':'Region';
+    const rAll=lang==='id'?'Semua':'All';
+    body.innerHTML=`<div class="region-btns"><button class="rbtn${region==='all'?' active':''}" onclick="setRegion('all',this);closeDrawer()">${rAll}Semua</button><button class="rbtn${region==='id'?' active':''}" onclick="setRegion('id',this);closeDrawer()">Indonesia</button><button class="rbtn${region==='global'?' active':''}" onclick="setRegion('global',this);closeDrawer()">Global</button></div>`;
   }else if(type==='sources'){
     title.textContent='Status Sumber Data';
     const keys=[['bmkg','BMKG'],['usgs','USGS'],['eonet','NASA EONET'],['gdacs','GDACS (UN)'],['reliefweb','ReliefWeb (UN)'],['crisisgroup','Crisis Group'],['msf','Al Jazeera'],['who','WHO'],['noaa','NOAA / NHC'],['pvmbg','PVMBG / MAGMA'],['icrc','OCHA / Konflik'],['acled','ACLED']];
@@ -760,7 +769,50 @@ function setLang(l,el,ctx){
   lang=l;
   if(ctx==='mob')document.querySelectorAll('.ltog .lbtn').forEach(x=>x.classList.remove('active'));
   else document.querySelectorAll('.dlang .dlbtn').forEach(x=>x.classList.remove('active'));
+  // Sync both toggles
+  document.querySelectorAll('.ltog .lbtn').forEach(x=>x.classList.toggle('active', x.textContent===l.toUpperCase()));
+  document.querySelectorAll('.dlang .dlbtn').forEach(x=>x.classList.toggle('active', x.textContent===l.toUpperCase()));
   if(el)el.classList.add('active');
+  // Translate stat labels
+  const lbls = l==='id'
+    ? {c:'KRITIS',w:'WASPADA',t:'TOTAL'}
+    : {c:'CRITICAL',w:'WARNING',t:'TOTAL'};
+  ['lbl-mc','lbl-dc'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=lbls.c;});
+  ['lbl-mw','lbl-dw'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=lbls.w;});
+  ['lbl-mt','lbl-dt'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=lbls.t;});
+  // Translate bottom nav
+  const bnav = document.querySelectorAll('.bni');
+  const bnavLabels = l==='id'
+    ? ['Filter','Wilayah','Sumber','Simpan']
+    : ['Filter','Region','Sources','Save'];
+  bnav.forEach((btn,i)=>{
+    const span = btn.querySelector('span');
+    if(span && bnavLabels[i]) span.textContent = bnavLabels[i];
+  });
+  // Translate filter chips (mobile)
+  document.querySelectorAll('.chip-label').forEach(el => {
+    el.textContent = l === 'id' ? el.dataset.id : el.dataset.en;
+  });
+  // Translate desktop category buttons
+  document.querySelectorAll('.dcat-label').forEach(el => {
+    el.textContent = l === 'id' ? el.dataset.id : el.dataset.en;
+  });
+  // Translate section headers, region labels, save button
+  document.querySelectorAll('.rgn-label').forEach(el => {
+    el.textContent = l === 'id' ? el.dataset.id : el.dataset.en;
+  });
+  // Translate search placeholder
+  const dsrch = document.getElementById('d-srch');
+  if(dsrch) dsrch.placeholder = l==='id' ? 'Cari kejadian...' : 'Search events...';
+  const msrch = document.getElementById('m-srch');
+  if(msrch) msrch.placeholder = l==='id' ? 'Cari kejadian...' : 'Search events...';
+  // Translate detail panel empty state
+  const ddetEmpty = document.querySelector('.ddet-empty-tx');
+  if(ddetEmpty) ddetEmpty.textContent = l==='id' ? 'Pilih kejadian
+untuk melihat detail' : 'Select an event
+to view details';
+  const html = document.documentElement;
+  html.setAttribute('lang', l);
   render();updCounts();if(selId)selectEv(selId);
 }
 function toggleSrch(){const b=document.getElementById('srchbar');if(b.classList.toggle('show'))document.getElementById('m-srch').focus();}
@@ -782,6 +834,26 @@ function saveOffline(){
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='crisis-monitor-'+new Date().toISOString().slice(0,16).replace('T','_').replace(':','')+'.html';a.click();
 }
+
+// Handle browser back button
+window.addEventListener('popstate', function(e) {
+  // Close mobile detail sheet on back
+  const sheet = document.getElementById('detsheet');
+  if (sheet && sheet.classList.contains('open')) {
+    sheet.classList.remove('open');
+    selId = null;
+    document.querySelectorAll('.evc.sel').forEach(el => el.classList.remove('sel'));
+    return;
+  }
+  // Close drawer if open
+  const drov = document.getElementById('drov');
+  if (drov && drov.classList.contains('show')) {
+    const drawer = document.getElementById('drawer');
+    if(drawer) drawer.classList.remove('open');
+    drov.classList.remove('show');
+    return;
+  }
+});
 
 loadData();
 </script>
